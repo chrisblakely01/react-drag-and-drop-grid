@@ -6,26 +6,47 @@ const Types = {
 	ITEM: 'shift'
 }
 const itemSource = {
-	beginDrag(props) {
-		console.log('BEGIN DRAG');
-		return {};
-	},
-	endDrag(props) {
-		console.log('END DRAG');
-		return {};
+	beginDrag(props, monitor, component) {
+		const shiftTime = component.getShiftTime() 
+
+		return { shiftTime: shiftTime};
+	}, 
+	endDrag(props, monitor, component) {
+
+		component.handleDragEnd();
 	}
+
 }
 function collect(connect, monitor) {
 	return {
 		connectDragSource: connect.dragSource(),
-		isDragging: monitor.isDragging()
+		isDragging: monitor.isDragging(),
 	}
 }
 
-function Shift({ connectDragSource, isDragging }) {
-	return connectDragSource(
-		<div className="shift">9-5</div>
-	);
-  }
+class Shift extends Component {
+	constructor(props){
+		super(props);
+
+		this.state = {shiftTime: this.props.shiftTime}
+
+		this.handleDragEnd = this.handleDragEnd.bind(this);
+	}
+
+	getShiftTime() {
+		return this.props.shiftTime
+	}
+
+	handleDragEnd() {
+		this.props.onDragEnd();
+	}
+
+
+	render() {
+		return this.props.connectDragSource(
+			<div className="shift">{this.state.shiftTime}</div>
+		);
+	}
+}
 
 export default DragSource(Types.ITEM, itemSource, collect)(Shift)

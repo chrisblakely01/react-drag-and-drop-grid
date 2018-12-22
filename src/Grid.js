@@ -4,7 +4,12 @@ import Shift from './Shift.js'
 import Cell from './Cell.js';
 
 class Grid extends Component {
+
 	render() {
+		const shift1 = { shiftTime: '9-5' };
+		const shift2 = { shiftTime: '10-4' };
+		const shift3 = { shiftTime: '3-6' };
+
 		return (
 			<div className="grid-container">
 			    <div className="item">Employees</div>
@@ -14,11 +19,9 @@ class Grid extends Component {
 				<div className="item">Ciaran</div>
 
 				<div className="item">Mon</div>
-				<div className="item">
-					<Shift/>
-				</div>
-				<Cell shift="9-5"/>
-				<Cell />
+				<Cell shift={ shift1 }/>
+				<Cell shift={ shift2 }/>
+				<Cell shift={ shift3 }/>
 				<Cell />
 
 				<div className="item">Tues</div>

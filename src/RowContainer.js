@@ -46,9 +46,8 @@ class RowContainer extends Component {
 	}
 
 	render () {
-		console.log(this.props.isOver)
 		return this.props.connectDropTarget(
-			<div class={`row-container ${this.props.isOver ? 'highlight' : ''}`}>
+			<div class={`row-container ${this.props.isOver ? 'highlight-row' : ''}`}>
 				<Row name={this.props.name}/>
 			</div>
 		);

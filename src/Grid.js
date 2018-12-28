@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Grid.css';
-import DraggableRow from './RowContainer';
+import RowContainer from './RowContainer';
 
 class Grid extends Component {
 
@@ -16,11 +16,12 @@ class Grid extends Component {
 				<div className="item">Sat</div>
 				<div className="item">Sun</div>
 
-				<DraggableRow name="Chris"/>
-				<DraggableRow name="David"/>
-				<DraggableRow name="Jake"/>
-				<DraggableRow name="Roy"/>
-				<DraggableRow name="Dillon"/>
+				<RowContainer name="Chris"/>
+				<RowContainer name="David"/>
+				<RowContainer name="Jake"/>
+				<RowContainer name="Roy"/>
+				<RowContainer name="Dillon"/>
+				
 			</div>
 		);
 	}

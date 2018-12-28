@@ -9,7 +9,7 @@ const Types = {
 const itemSource = {
 	beginDrag(props, monitor, component) {
 		return {};
-	}, 
+	},
 	endDrag(props, monitor, component) {
 
 	}
@@ -18,15 +18,16 @@ const itemSource = {
 function collect(connect, monitor) {
 	return {
 		connectDragSource: connect.dragSource(),
+		connectDragPreview: connect.dragPreview(),
 		isDragging: monitor.isDragging(),
 	}
 }
 
 class Row extends Component {
-	constructor(props){
+	constructor(props) {
 		super(props);
 
-		this.state = {shiftTime: this.props.shiftTime}
+		this.state = { shiftTime: this.props.shiftTime }
 
 		this.handleDragEnd = this.handleDragEnd.bind(this);
 	}
@@ -44,18 +45,19 @@ class Row extends Component {
 		const shift2 = { shiftTime: '10-4' };
 		const shift3 = { shiftTime: '3-6' };
 
-		return this.props.connectDragSource(
+		return this.props.connectDragPreview(
 			<div className="draggable-row">
-				<div className="item">{this.props.name}</div>
-				<Cell shift={ shift1 }/>
-				<Cell shift={ shift2 }/>
-				<Cell shift={ shift3 }/>
+				{this.props.connectDragSource(<div className="item">{this.props.name}</div>)}
+
+				<Cell shifts={[shift1, shift2]} />
+				<Cell shifts={[shift2]} />
+				<Cell shifts={[shift3]} />
 				<Cell />
 				<Cell />
 				<Cell />
 				<Cell />
-			</div>
-		);
+			</div>,
+		)
 	}
 }
 

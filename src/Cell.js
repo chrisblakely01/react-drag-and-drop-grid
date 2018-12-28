@@ -34,25 +34,30 @@ class Cell extends Component {
 	constructor(props){
 		super(props);
 
-		const initialState = props.shift? props.shift : null;
-		this.state = {shift: initialState};
+		const initialState = props.shifts? props.shifts : null;
+		this.state = {shifts: initialState};
 
 		this.handleDragEnd = this.handleDragEnd.bind(this);
 
 	}
 
 	handleDrop (shift) {
-		this.setState({shift: shift});
+		this.setState({shifts: [shift]});
 	}
 
-	handleDragEnd() {
-		this.setState({shift: null});
+	handleDragEnd () {
+		// this.setState({shift: null});
 	}
+
+	renderShifts = (shift, index) => {
+		return <Shift key={index} shiftTime={shift.shiftTime} onDragEnd={this.handleDragEnd}/> ;
+	}
+
 
 	render () {
 		return this.props.connectDropTarget(
 			<div className={`item ${this.props.isOver ? 'highlight' : ''}`}>
-				{this.state.shift ? <Shift shiftTime={this.state.shift.shiftTime} onDragEnd={this.handleDragEnd}/> : null}
+				{this.state.shifts ?  (this.state.shifts.map((shift, index) => this.renderShifts(shift, index))) : null }
 			</div>
 		);
 	}

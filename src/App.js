@@ -7,7 +7,7 @@ import { DragDropContextProvider  } from 'react-dnd';
 class App extends Component {
   render() {
     return (
-		<DragDropContextProvider backend={TouchBackend}>
+		<DragDropContextProvider backend={HTML5Backend}>
 			<Fragment>
 				<Grid/>
 			</Fragment>

@@ -38,7 +38,7 @@ class Shift extends Component {
 	}
 
 	handleDragEnd() {
-		this.props.onDragEnd();
+		this.props.onDragEnd(this.state, this.props.cell);
 	}
 
 

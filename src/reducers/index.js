@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import cellReducer from './cellReducer';
+import gridData from './gridDataReducer';
 
 const reducers = combineReducers({
-	cellReducer
+	gridData
 });
 
 export default reducers;

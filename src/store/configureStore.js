@@ -9,8 +9,6 @@ middlewares.push(thunk);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export default function configureStore() {
-  return createStore(
-	reducers, initialState, composeEnhancers(applyMiddleware(...middlewares))
-	);
-}
+const configureStore = () => createStore(reducers, initialState(), composeEnhancers(applyMiddleware(...middlewares)));
+
+export default configureStore;
